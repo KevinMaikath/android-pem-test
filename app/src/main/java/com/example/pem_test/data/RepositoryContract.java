@@ -7,7 +7,7 @@ import io.realm.RealmResults;
 public interface RepositoryContract {
 
   interface LoadContactListCallback {
-    void setContactList(final RealmResults<Contact> contactList);
+    void setContactList(final Contact[] contactList);
   }
 
   void loadContactList(LoadContactListCallback callback);

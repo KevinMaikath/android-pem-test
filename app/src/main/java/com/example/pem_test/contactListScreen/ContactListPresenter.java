@@ -46,7 +46,7 @@ public class ContactListPresenter implements ContactListContract.Presenter {
     if (state.contactListHasChanged) {
       model.loadContactList(new RepositoryContract.LoadContactListCallback() {
         @Override
-        public void setContactList(RealmResults<Contact> contactList) {
+        public void setContactList(Contact[] contactList) {
           viewModel.contactList = contactList;
           state.contactListHasChanged = false;
           view.get().displayData(viewModel);
@@ -56,7 +56,7 @@ public class ContactListPresenter implements ContactListContract.Presenter {
     }
 
     if (viewModel.contactList == null) {
-      viewModel.contactList = new ArrayList<>();
+      viewModel.contactList = new Contact[]{};
     }
 
     // update the view

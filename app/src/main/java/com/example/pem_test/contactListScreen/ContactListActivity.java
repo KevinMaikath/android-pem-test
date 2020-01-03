@@ -5,9 +5,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pem_test.R;
@@ -37,9 +37,9 @@ public class ContactListActivity
 
     this.toolbar = findViewById(R.id.toolbar);
     this.toolbar_title = findViewById(R.id.toolbar_title);
-    toolbar_title.setText(R.string.detail_title);
+    toolbar_title.setText(R.string.contact_list_title);
 
-    this.add_button = findViewById(R.id.toolbar_leftButton);
+    this.add_button = findViewById(R.id.toolbar_rightButton);
     add_button.setText(R.string.add_button);
     add_button.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -59,6 +59,7 @@ public class ContactListActivity
     recyclerView = findViewById(R.id.contact_list_recycler);
     recyclerView.setAdapter(listAdapter);
 
+    setSupportActionBar(toolbar);
     // do the setup
     ContactListScreen.configure(this);
   }

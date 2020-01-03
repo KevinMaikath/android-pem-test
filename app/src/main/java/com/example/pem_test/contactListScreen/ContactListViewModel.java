@@ -6,5 +6,5 @@ import java.util.List;
 
 public class ContactListViewModel {
 
-  public List<Contact> contactList;
+  public Contact[] contactList;
 }

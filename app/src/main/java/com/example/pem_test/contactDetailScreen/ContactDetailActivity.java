@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pem_test.R;
 
@@ -57,6 +57,7 @@ public class ContactDetailActivity
     this.dni_label = findViewById(R.id.detail_dni_label);
     this.cv_label = findViewById(R.id.detail_cv_label);
 
+    setSupportActionBar(toolbar);
     // do the setup
     ContactDetailScreen.configure(this);
   }

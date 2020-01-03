@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pem_test.R;
 
@@ -57,6 +57,7 @@ public class ContactCreationActivity
     this.dni_input = findViewById(R.id.creation_dni_input);
     this.cv_input = findViewById(R.id.creation_cv_input);
 
+    setSupportActionBar(toolbar);
     // do the setup
     ContactCreationScreen.configure(this);
   }

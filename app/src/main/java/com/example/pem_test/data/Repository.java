@@ -12,7 +12,7 @@ public class Repository implements RepositoryContract {
   private static Repository instance = null;
   private Realm realm;
 
-  private RealmResults<Contact> contactList;
+  private Contact[] contactList;
 
   public static Repository getInstance(Context context) {
     if (instance == null) {
@@ -37,7 +37,8 @@ public class Repository implements RepositoryContract {
         new Realm.Transaction() {
           @Override
           public void execute(Realm bgRealm) {
-            contactList = bgRealm.where(Contact.class).findAll();
+            RealmResults<Contact> results = bgRealm.where(Contact.class).findAll();
+            contactList = results.toArray(new Contact[results.size()]);
           }
         },
         new Realm.Transaction.OnSuccess() {
