@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.example.pem_test.data.Repository;
 
+import java.util.Map;
+
 
 public class ContactCreationModel implements ContactCreationContract.Model {
 
@@ -15,4 +17,8 @@ public class ContactCreationModel implements ContactCreationContract.Model {
     this.repository = repository;
   }
 
+  @Override
+  public void createContact(Map<String, String> data) {
+    repository.addContact(data);
+  }
 }

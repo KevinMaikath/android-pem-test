@@ -3,6 +3,8 @@ package com.example.pem_test.data;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.Map;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
@@ -23,12 +25,7 @@ public class Repository implements RepositoryContract {
 
   private Repository(Context context) {
     Realm.init(context);
-    RealmConfiguration config = new RealmConfiguration.Builder()
-        .name("contact.db")
-        .schemaVersion(1)
-        .deleteRealmIfMigrationNeeded()
-        .build();
-    this.realm = Realm.getInstance(config);
+    this.realm = Realm.getDefaultInstance();
   }
 
   @Override
@@ -57,13 +54,32 @@ public class Repository implements RepositoryContract {
   }
 
   @Override
-  public void addContact(final Contact contact) {
+  public void addContact(final Map<String, String> data) {
     // TODO addContact
     realm.executeTransactionAsync(
         new Realm.Transaction() {
           @Override
           public void execute(Realm bgRealm) {
-            bgRealm.insert(contact);
+
+
+            Number currentIdNum = bgRealm.where(Contact.class).max("id");
+            int nextId;
+            if (currentIdNum == null) {
+              nextId = 1;
+            } else {
+              nextId = currentIdNum.intValue() + 1;
+            }
+
+            Contact contact = new Contact();
+            contact.setId(nextId);
+            contact.setName(data.get("name"));
+            contact.setSurname(data.get("surname"));
+            contact.setAge(Integer.parseInt(data.get("age")));
+            contact.setOccupation(data.get("occupation"));
+            contact.setDni(data.get("dni"));
+            contact.setCv(data.get("cv"));
+
+            bgRealm.insertOrUpdate(contact);
           }
         }
     );

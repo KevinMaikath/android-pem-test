@@ -1,6 +1,7 @@
 package com.example.pem_test.contactCreationScreen;
 
 import java.lang.ref.WeakReference;
+import java.util.Map;
 
 interface ContactCreationContract {
 
@@ -10,6 +11,8 @@ interface ContactCreationContract {
     void displayData(ContactCreationViewModel viewModel);
 
     void goBack();
+
+    Map<String, String> getDataFromInput();
   }
 
   interface Presenter {
@@ -28,6 +31,7 @@ interface ContactCreationContract {
 
   interface Model {
 
+    void createContact(Map<String, String> data);
   }
 
   interface Router {

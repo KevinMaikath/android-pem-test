@@ -43,17 +43,16 @@ public class ContactListPresenter implements ContactListContract.Presenter {
   public void fetchData() {
     // Log.e(TAG, "fetchData()");
 
-    if (state.contactListHasChanged) {
-      model.loadContactList(new RepositoryContract.LoadContactListCallback() {
-        @Override
-        public void setContactList(Contact[] contactList) {
-          viewModel.contactList = contactList;
-          state.contactListHasChanged = false;
-          view.get().displayData(viewModel);
-      Log.e(TAG, "____________ CONTACT LIST CHANGED TRUE ______");
-        }
-      });
-    }
+
+    model.loadContactList(new RepositoryContract.LoadContactListCallback() {
+      @Override
+      public void setContactList(Contact[] contactList) {
+        viewModel.contactList = contactList;
+        view.get().displayData(viewModel);
+        Log.e(TAG, "____________ CONTACT LIST CHANGED TRUE ______");
+      }
+    });
+
 
     if (viewModel.contactList == null) {
       viewModel.contactList = new Contact[]{};

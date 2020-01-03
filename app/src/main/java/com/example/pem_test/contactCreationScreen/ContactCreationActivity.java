@@ -1,6 +1,7 @@
 package com.example.pem_test.contactCreationScreen;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.pem_test.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactCreationActivity
     extends AppCompatActivity implements ContactCreationContract.View {
@@ -87,4 +91,22 @@ public class ContactCreationActivity
     finish();
   }
 
+
+  @Override
+  public Map<String, String> getDataFromInput() {
+    HashMap<String, String> data = new HashMap<>();
+
+    Log.e("NAME", "____________________" + name_input.getText().toString());
+
+
+
+    data.put("name", name_input.getText().toString());
+    data.put("surname", surname_input.getText().toString());
+    data.put("age", age_input.getText().toString());
+    data.put("occupation", occupation_input.getText().toString());
+    data.put("dni", dni_input.getText().toString());
+    data.put("cv", cv_input.getText().toString());
+
+    return data;
+  }
 }
