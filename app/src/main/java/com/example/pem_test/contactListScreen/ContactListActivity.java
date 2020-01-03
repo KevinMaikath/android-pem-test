@@ -2,7 +2,9 @@ package com.example.pem_test.contactListScreen;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,10 +22,21 @@ public class ContactListActivity
   private RecyclerView recyclerView;
   private ContactListAdapter listAdapter;
 
+  private Toolbar toolbar;
+  private TextView toolbar_title;
+  private Button add_button;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_contact_list);
+
+    this.toolbar = findViewById(R.id.toolbar);
+    this.toolbar_title = findViewById(R.id.toolbar_title);
+    toolbar_title.setText(R.string.detail_title);
+
+    this.add_button = findViewById(R.id.toolbar_leftButton);
+    add_button.setText(R.string.add_button);
 
     listAdapter = new ContactListAdapter(new View.OnClickListener() {
       @Override

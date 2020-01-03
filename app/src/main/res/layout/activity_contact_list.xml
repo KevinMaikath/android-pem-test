@@ -4,4 +4,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".contactListScreen.ContactListActivity" />
+        tools:context=".contactListScreen.ContactListActivity">
+
+
+    <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

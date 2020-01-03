@@ -15,7 +15,7 @@ public class ContactDetailRouter implements ContactDetailContract.Router {
   }
 
   @Override
-  public ContactDetailState getDataFromPreviousScreen() {
+  public ContactDetailState getDataFromContactListScreen() {
     ContactDetailState state = mediator.getContactDetailState();
     return state;
   }

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">pem-test</string>
+    <string name="creation_name_label">Name:</string>
+    <string name="creation_surname_label">Surname:</string>
+    <string name="creation_age_label">Age:</string>
+    <string name="creation_occupation_label">Occupation:</string>
+    <string name="creation_dni_label">Dni:</string>
+    <string name="creation_cv_label">CV:</string>
+    <string name="done_button_label">Done</string>
+    <string name="detail_title">Contact Details</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="delete_button">Delete</string>
+    <string name="creation_title">New Contact</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="done_button">Done</string>
+    <string name="add_button">+</string>
 </resources>

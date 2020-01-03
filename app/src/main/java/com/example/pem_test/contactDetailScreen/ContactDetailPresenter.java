@@ -2,6 +2,8 @@ package com.example.pem_test.contactDetailScreen;
 
 import android.util.Log;
 
+import com.example.pem_test.data.Contact;
+
 import java.lang.ref.WeakReference;
 
 public class ContactDetailPresenter implements ContactDetailContract.Presenter {
@@ -37,18 +39,10 @@ public class ContactDetailPresenter implements ContactDetailContract.Presenter {
     // Log.e(TAG, "fetchData()");
 
     // set passed state
-//    ContactDetailState state = router.getDataFromPreviousScreen();
-//    if (state != null) {
-//      viewModel.data = state.data;
-//    }
-//
-//    if (viewModel.data == null) {
-//      // call the model
-//      String data = model.fetchData();
-//
-//      // set initial state
-//      viewModel.data = data;
-//    }
+    ContactDetailState state = router.getDataFromContactListScreen();
+    if (state != null) {
+      viewModel.currentContact = state.currentContact;
+    }
 
     // update the view
     view.get().displayData(viewModel);

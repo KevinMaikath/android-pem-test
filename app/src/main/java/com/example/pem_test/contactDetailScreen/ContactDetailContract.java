@@ -24,6 +24,6 @@ interface ContactDetailContract {
   }
 
   interface Router {
-    ContactDetailState getDataFromPreviousScreen();
+    ContactDetailState getDataFromContactListScreen();
   }
 }

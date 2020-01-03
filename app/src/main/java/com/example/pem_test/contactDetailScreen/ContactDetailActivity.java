@@ -1,8 +1,9 @@
 package com.example.pem_test.contactDetailScreen;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,10 +16,32 @@ public class ContactDetailActivity
 
   private ContactDetailContract.Presenter presenter;
 
+  private Toolbar toolbar;
+  private TextView toolbar_title, name_label, surname_label, age_label, occupation_label, dni_label,
+      cv_label;
+  private Button back_button, delete_button;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_contact_detail);
+
+    this.toolbar = findViewById(R.id.toolbar);
+    this.toolbar_title = findViewById(R.id.toolbar_title);
+    toolbar_title.setText(R.string.detail_title);
+
+    this.back_button = findViewById(R.id.toolbar_leftButton);
+    back_button.setText(R.string.cancel_button);
+
+    this.delete_button = findViewById(R.id.toolbar_rightButton);
+    delete_button.setText(R.string.delete_button);
+
+    this.name_label = findViewById(R.id.detail_name_label);
+    this.surname_label = findViewById(R.id.detail_surname_label);
+    this.age_label = findViewById(R.id.detail_age_label);
+    this.occupation_label = findViewById(R.id.detail_occupation_label);
+    this.dni_label = findViewById(R.id.detail_dni_label);
+    this.cv_label = findViewById(R.id.detail_cv_label);
 
     // do the setup
     ContactDetailScreen.configure(this);
@@ -42,6 +65,11 @@ public class ContactDetailActivity
     //Log.e(TAG, "displayData()");
 
     // deal with the data
-//    ((TextView) findViewById(R.id.data)).setText(viewModel.data);
+    this.name_label.setText(viewModel.currentContact.getName());
+    this.surname_label.setText(viewModel.currentContact.getSurname());
+    this.age_label.setText(String.valueOf(viewModel.currentContact.getAge()));
+    this.occupation_label.setText(viewModel.currentContact.getOccupation());
+    this.dni_label.setText(viewModel.currentContact.getDni());
+    this.cv_label.setText(viewModel.currentContact.getCv());
   }
 }
