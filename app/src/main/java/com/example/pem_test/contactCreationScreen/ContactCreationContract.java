@@ -8,6 +8,8 @@ interface ContactCreationContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(ContactCreationViewModel viewModel);
+
+    void goBack();
   }
 
   interface Presenter {
@@ -18,6 +20,10 @@ interface ContactCreationContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void onCancelButtonClicked();
+
+    void onDoneButtonClicked();
   }
 
   interface Model {

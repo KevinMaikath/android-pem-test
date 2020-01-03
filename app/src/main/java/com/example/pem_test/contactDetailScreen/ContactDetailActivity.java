@@ -1,6 +1,7 @@
 package com.example.pem_test.contactDetailScreen;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -31,10 +32,23 @@ public class ContactDetailActivity
     toolbar_title.setText(R.string.detail_title);
 
     this.back_button = findViewById(R.id.toolbar_leftButton);
-    back_button.setText(R.string.cancel_button);
+    back_button.setText(R.string.back_button);
+    back_button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.onBackButtonClicked();
+      }
+    });
 
     this.delete_button = findViewById(R.id.toolbar_rightButton);
     delete_button.setText(R.string.delete_button);
+    delete_button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.onDeleteButtonClicked();
+      }
+    });
+
 
     this.name_label = findViewById(R.id.detail_name_label);
     this.surname_label = findViewById(R.id.detail_surname_label);
@@ -71,5 +85,10 @@ public class ContactDetailActivity
     this.occupation_label.setText(viewModel.currentContact.getOccupation());
     this.dni_label.setText(viewModel.currentContact.getDni());
     this.cv_label.setText(viewModel.currentContact.getCv());
+  }
+
+  @Override
+  public void goBack() {
+    finish();
   }
 }

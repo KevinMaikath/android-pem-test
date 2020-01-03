@@ -1,6 +1,7 @@
 package com.example.pem_test.contactListScreen;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +29,9 @@ public class ContactListActivity
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
+    Log.e(TAG, "____________ ON CREATE __________");
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_contact_list);
 
@@ -37,6 +41,12 @@ public class ContactListActivity
 
     this.add_button = findViewById(R.id.toolbar_leftButton);
     add_button.setText(R.string.add_button);
+    add_button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.onAddButtonClicked();
+      }
+    });
 
     listAdapter = new ContactListAdapter(new View.OnClickListener() {
       @Override
@@ -45,6 +55,9 @@ public class ContactListActivity
         presenter.onContactClicked(contact);
       }
     });
+
+    recyclerView = findViewById(R.id.contact_list_recycler);
+    recyclerView.setAdapter(listAdapter);
 
     // do the setup
     ContactListScreen.configure(this);

@@ -24,6 +24,8 @@ interface ContactListContract {
     void fetchData();
 
     void onContactClicked(Contact contact);
+
+    void onAddButtonClicked();
   }
 
   interface Model {

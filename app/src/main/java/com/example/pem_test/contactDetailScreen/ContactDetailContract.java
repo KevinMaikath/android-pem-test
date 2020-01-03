@@ -8,6 +8,8 @@ interface ContactDetailContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(ContactDetailViewModel viewModel);
+
+    void goBack();
   }
 
   interface Presenter {
@@ -18,6 +20,10 @@ interface ContactDetailContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void onBackButtonClicked();
+
+    void onDeleteButtonClicked();
   }
 
   interface Model {

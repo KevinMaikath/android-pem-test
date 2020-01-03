@@ -1,7 +1,5 @@
 package com.example.pem_test.contactCreationScreen;
 
-import android.util.Log;
-
 import java.lang.ref.WeakReference;
 
 public class ContactCreationPresenter implements ContactCreationContract.Presenter {
@@ -36,18 +34,17 @@ public class ContactCreationPresenter implements ContactCreationContract.Present
   public void fetchData() {
     // Log.e(TAG, "fetchData()");
 
-//    if (viewModel.data == null) {
-      // call the model
-//      String data = model.fetchData();
-
-      // set initial state
-//      viewModel.data = data;
-//    }
-
     // update the view
     view.get().displayData(viewModel);
-
   }
 
+  @Override
+  public void onCancelButtonClicked() {
+    view.get().goBack();
+  }
 
+  @Override
+  public void onDoneButtonClicked() {
+    // TODO onDoneButtonClicked
+  }
 }

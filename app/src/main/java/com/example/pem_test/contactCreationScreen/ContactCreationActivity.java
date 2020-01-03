@@ -1,7 +1,7 @@
 package com.example.pem_test.contactCreationScreen;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,7 +20,7 @@ public class ContactCreationActivity
 
   private Toolbar toolbar;
   private TextView toolbar_title;
-  private Button back_button, delete_button;
+  private Button cancel_button, done_button;
   private EditText name_input, surname_input, age_input, occupation_input, dni_input, cv_input;
 
   @Override
@@ -32,11 +32,23 @@ public class ContactCreationActivity
     this.toolbar_title = findViewById(R.id.toolbar_title);
     toolbar_title.setText(R.string.creation_title);
 
-    this.back_button = findViewById(R.id.toolbar_leftButton);
-    back_button.setText(R.string.cancel_button);
+    this.cancel_button = findViewById(R.id.toolbar_leftButton);
+    cancel_button.setText(R.string.cancel_button);
+    cancel_button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.onCancelButtonClicked();
+      }
+    });
 
-    this.delete_button = findViewById(R.id.toolbar_rightButton);
-    delete_button.setText(R.string.done_button);
+    this.done_button = findViewById(R.id.toolbar_rightButton);
+    done_button.setText(R.string.done_button);
+    done_button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.onDoneButtonClicked();
+      }
+    });
 
     this.name_input = findViewById(R.id.creation_name_input);
     this.surname_input = findViewById(R.id.creation_surname_input);
@@ -68,4 +80,10 @@ public class ContactCreationActivity
 
     // deal with the data
   }
+
+  @Override
+  public void goBack() {
+    finish();
+  }
+
 }

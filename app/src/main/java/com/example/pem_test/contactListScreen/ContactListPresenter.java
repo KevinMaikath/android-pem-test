@@ -50,7 +50,7 @@ public class ContactListPresenter implements ContactListContract.Presenter {
           viewModel.contactList = contactList;
           state.contactListHasChanged = false;
           view.get().displayData(viewModel);
-          Log.e(TAG, "____________ CONTACT LIST LOADED ______");
+      Log.e(TAG, "____________ CONTACT LIST CHANGED TRUE ______");
         }
       });
     }
@@ -66,5 +66,10 @@ public class ContactListPresenter implements ContactListContract.Presenter {
   @Override
   public void onContactClicked(Contact contact) {
     // TODO onContactClicked
+  }
+
+  @Override
+  public void onAddButtonClicked() {
+    router.navigateToContactCreationScreen();
   }
 }

@@ -46,8 +46,15 @@ public class ContactDetailPresenter implements ContactDetailContract.Presenter {
 
     // update the view
     view.get().displayData(viewModel);
-
   }
 
+  @Override
+  public void onBackButtonClicked() {
+    view.get().goBack();
+  }
 
+  @Override
+  public void onDeleteButtonClicked() {
+    // TODO onDeleteButtonClicked
+  }
 }

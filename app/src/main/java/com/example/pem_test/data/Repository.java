@@ -22,6 +22,7 @@ public class Repository implements RepositoryContract {
   }
 
   private Repository(Context context) {
+    Realm.init(context);
     RealmConfiguration config = new RealmConfiguration.Builder()
         .name("contact.db")
         .schemaVersion(1)

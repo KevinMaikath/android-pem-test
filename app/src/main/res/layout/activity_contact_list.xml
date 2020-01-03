@@ -11,4 +11,10 @@
             android:id="@+id/toolbar"
             layout="@layout/custom_toolbar" />
 
+        <include
+                android:id="@+id/contact_list_recycler"
+                layout="@layout/contact_list_recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

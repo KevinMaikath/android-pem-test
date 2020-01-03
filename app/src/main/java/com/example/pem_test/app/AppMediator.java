@@ -6,8 +6,6 @@ import com.example.pem_test.contactCreationScreen.ContactCreationState;
 import com.example.pem_test.contactDetailScreen.ContactDetailState;
 import com.example.pem_test.contactListScreen.ContactListState;
 
-import io.realm.Realm;
-
 public class AppMediator extends Application {
 
   private ContactListState contactListState;
@@ -15,7 +13,6 @@ public class AppMediator extends Application {
   private ContactDetailState contactDetailState;
 
   public AppMediator() {
-    Realm.init(this);
     this.contactListState = new ContactListState();
     this.contactCreationState = new ContactCreationState();
     this.contactDetailState = new ContactDetailState();
