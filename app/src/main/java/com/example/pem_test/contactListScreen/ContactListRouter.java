@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.Context;
 
 import com.example.pem_test.app.AppMediator;
+import com.example.pem_test.contactCreationScreen.ContactCreationActivity;
+import com.example.pem_test.contactDetailScreen.ContactDetailActivity;
+import com.example.pem_test.contactDetailScreen.ContactDetailState;
 
 public class ContactListRouter implements ContactListContract.Router {
 
@@ -17,20 +20,24 @@ public class ContactListRouter implements ContactListContract.Router {
   }
 
   @Override
-  public void navigateToNextScreen() {
+  public void navigateToContactCreationScreen() {
     Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, ContactListActivity.class);
+    Intent intent = new Intent(context, ContactCreationActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
 
   @Override
-  public void passDataToNextScreen(ContactListState state) {
-    mediator.setContactListState(state);
+  public void navigateToContactDetailScreen() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, ContactDetailActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
   }
 
   @Override
-  public ContactListState getDataFromPreviousScreen() {
-    ContactListState state = mediator.getContactListState();
-    return state;
+  public void passDataToContactDetailScreen(ContactDetailState state) {
+    mediator.setContactDetailState(state);
   }
+
 }

@@ -1,5 +1,9 @@
 package com.example.pem_test.contactListScreen;
 
+import com.example.pem_test.contactDetailScreen.ContactDetailState;
+import com.example.pem_test.data.Contact;
+import com.example.pem_test.data.RepositoryContract;
+
 import java.lang.ref.WeakReference;
 
 interface ContactListContract {
@@ -18,17 +22,19 @@ interface ContactListContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void onContactClicked(Contact contact);
   }
 
   interface Model {
-    String fetchData();
+    void loadContactList(RepositoryContract.LoadContactListCallback callback);
   }
 
   interface Router {
-    void navigateToNextScreen();
+    void navigateToContactCreationScreen();
 
-    void passDataToNextScreen(ContactListState state);
+    void navigateToContactDetailScreen();
 
-    ContactListState getDataFromPreviousScreen();
+    void passDataToContactDetailScreen(ContactDetailState state);
   }
 }

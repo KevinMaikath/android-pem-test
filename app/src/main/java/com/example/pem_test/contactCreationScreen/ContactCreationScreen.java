@@ -1,4 +1,4 @@
-package com.example.pem_test.contactListScreen;
+package com.example.pem_test.contactCreationScreen;
 
 import java.lang.ref.WeakReference;
 
@@ -7,21 +7,21 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.pem_test.app.AppMediator;
 import com.example.pem_test.data.Repository;
 
-public class ContactListScreen {
+public class ContactCreationScreen {
 
-  public static void configure(ContactListContract.View view) {
+  public static void configure(ContactCreationContract.View view) {
 
     WeakReference<FragmentActivity> context =
         new WeakReference<>((FragmentActivity) view);
 
     AppMediator mediator = (AppMediator) context.get().getApplication();
-    ContactListState state = mediator.getContactListState();
+    ContactCreationState state = mediator.getContactCreationState();
 
     Repository repository = Repository.getInstance(context.get());
 
-    ContactListContract.Router router = new ContactListRouter(mediator);
-    ContactListContract.Presenter presenter = new ContactListPresenter(state);
-    ContactListContract.Model model = new ContactListModel(repository);
+    ContactCreationContract.Router router = new ContactCreationRouter(mediator);
+    ContactCreationContract.Presenter presenter = new ContactCreationPresenter(state);
+    ContactCreationContract.Model model = new ContactCreationModel(repository);
     presenter.injectModel(model);
     presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));

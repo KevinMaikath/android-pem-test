@@ -1,18 +1,27 @@
 package com.example.pem_test.contactListScreen;
 
+import android.util.Log;
+
+import com.example.pem_test.data.Contact;
+import com.example.pem_test.data.RepositoryContract;
+
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+
+import io.realm.RealmResults;
 
 public class ContactListPresenter implements ContactListContract.Presenter {
 
   public static String TAG = ContactListPresenter.class.getSimpleName();
 
   private WeakReference<ContactListContract.View> view;
+  private ContactListState state;
   private ContactListViewModel viewModel;
   private ContactListContract.Model model;
   private ContactListContract.Router router;
 
   public ContactListPresenter(ContactListState state) {
-    viewModel = state;
+    viewModel = this.state = state;
   }
 
   @Override
@@ -34,24 +43,28 @@ public class ContactListPresenter implements ContactListContract.Presenter {
   public void fetchData() {
     // Log.e(TAG, "fetchData()");
 
-    // set passed state
-    ContactListState state = router.getDataFromPreviousScreen();
-    if (state != null) {
-      viewModel.data = state.data;
+    if (state.contactListHasChanged) {
+      model.loadContactList(new RepositoryContract.LoadContactListCallback() {
+        @Override
+        public void setContactList(RealmResults<Contact> contactList) {
+          viewModel.contactList = contactList;
+          state.contactListHasChanged = false;
+          view.get().displayData(viewModel);
+          Log.e(TAG, "____________ CONTACT LIST LOADED ______");
+        }
+      });
     }
 
-    if (viewModel.data == null) {
-      // call the model
-      String data = model.fetchData();
-
-      // set initial state
-      viewModel.data = data;
+    if (viewModel.contactList == null) {
+      viewModel.contactList = new ArrayList<>();
     }
 
     // update the view
     view.get().displayData(viewModel);
-
   }
 
-
+  @Override
+  public void onContactClicked(Contact contact) {
+    // TODO onContactClicked
+  }
 }
