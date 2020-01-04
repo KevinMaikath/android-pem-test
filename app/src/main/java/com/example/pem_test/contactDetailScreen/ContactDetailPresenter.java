@@ -3,6 +3,7 @@ package com.example.pem_test.contactDetailScreen;
 import android.util.Log;
 
 import com.example.pem_test.data.Contact;
+import com.example.pem_test.data.RepositoryContract;
 
 import java.lang.ref.WeakReference;
 
@@ -56,5 +57,11 @@ public class ContactDetailPresenter implements ContactDetailContract.Presenter {
   @Override
   public void onDeleteButtonClicked() {
     // TODO onDeleteButtonClicked
+    model.deleteContact(viewModel.currentContact, new RepositoryContract.RemoveContactDoneCallback() {
+      @Override
+      public void done() {
+        view.get().goBack();
+      }
+    });
   }
 }

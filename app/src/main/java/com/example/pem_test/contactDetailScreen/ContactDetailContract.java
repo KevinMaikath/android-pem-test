@@ -1,5 +1,8 @@
 package com.example.pem_test.contactDetailScreen;
 
+import com.example.pem_test.data.Contact;
+import com.example.pem_test.data.RepositoryContract;
+
 import java.lang.ref.WeakReference;
 
 interface ContactDetailContract {
@@ -27,6 +30,7 @@ interface ContactDetailContract {
   }
 
   interface Model {
+    void deleteContact(Contact contact, RepositoryContract.RemoveContactDoneCallback callback);
   }
 
   interface Router {

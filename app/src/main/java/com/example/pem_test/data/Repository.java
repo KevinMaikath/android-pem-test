@@ -72,19 +72,9 @@ public class Repository implements RepositoryContract {
 
   @Override
   public void removeContact(final Contact contact, RemoveContactDoneCallback callback) {
-    // TODO removeContact
-    realm.executeTransactionAsync(new Realm.Transaction() {
-      @Override
-      public void execute(Realm bgRealm) {
-        RealmResults<Contact> results = bgRealm.where(Contact.class)
-            .equalTo("id", contact.getId())
-            .findAll();
-        results.deleteAllFromRealm();
-      }
-    });
-
-
-
+    realm.beginTransaction();
+    contact.deleteFromRealm();
+    realm.commitTransaction();
     callback.done();
   }
 }

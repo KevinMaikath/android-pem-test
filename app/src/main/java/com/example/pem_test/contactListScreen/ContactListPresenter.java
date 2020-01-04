@@ -2,6 +2,7 @@ package com.example.pem_test.contactListScreen;
 
 import android.util.Log;
 
+import com.example.pem_test.contactDetailScreen.ContactDetailState;
 import com.example.pem_test.data.Contact;
 import com.example.pem_test.data.RepositoryContract;
 
@@ -57,7 +58,10 @@ public class ContactListPresenter implements ContactListContract.Presenter {
 
   @Override
   public void onContactClicked(Contact contact) {
-    // TODO onContactClicked
+    ContactDetailState state = new ContactDetailState();
+    state.currentContact = contact;
+    router.passDataToContactDetailScreen(state);
+    router.navigateToContactDetailScreen();
   }
 
   @Override
