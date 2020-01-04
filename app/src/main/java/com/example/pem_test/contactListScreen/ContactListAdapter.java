@@ -15,15 +15,15 @@ import java.util.List;
 
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
-  private Contact[] contactList;
+  private List<Contact> contactList;
   private final View.OnClickListener clickListener;
 
   public ContactListAdapter(View.OnClickListener clickListener) {
-    this.contactList = new Contact[]{};
+    this.contactList = new ArrayList<>();
     this.clickListener = clickListener;
   }
 
-  public void setItems(Contact[] items) {
+  public void setItems(List<Contact> items) {
     contactList = items;
     notifyDataSetChanged();
   }
@@ -38,22 +38,22 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
   @Override
   public void onBindViewHolder(ViewHolder holder, final int position) {
-    holder.itemView.setTag(contactList[position]);
+    holder.itemView.setTag(contactList.get(position));
     holder.itemView.setOnClickListener(clickListener);
 
-    String name = contactList[position].getName();
+    String name = contactList.get(position).getName();
     holder.contactName.setText(name);
 
-    String surname = contactList[position].getSurname();
-    holder.contactName.setText(surname);
+    String surname = contactList.get(position).getSurname();
+    holder.contactSurname.setText(surname);
 
-    String dni = contactList[position].getDni();
+    String dni = contactList.get(position).getDni();
     holder.contactDNI.setText(dni);
   }
 
   @Override
   public int getItemCount() {
-    return contactList.length;
+    return contactList.size();
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -96,10 +97,6 @@ public class ContactCreationActivity
   public Map<String, String> getDataFromInput() {
     HashMap<String, String> data = new HashMap<>();
 
-    Log.e("NAME", "____________________" + name_input.getText().toString());
-
-
-
     data.put("name", name_input.getText().toString());
     data.put("surname", surname_input.getText().toString());
     data.put("age", age_input.getText().toString());
@@ -108,5 +105,10 @@ public class ContactCreationActivity
     data.put("cv", cv_input.getText().toString());
 
     return data;
+  }
+
+  @Override
+  public void presentToast(String message) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }
 }

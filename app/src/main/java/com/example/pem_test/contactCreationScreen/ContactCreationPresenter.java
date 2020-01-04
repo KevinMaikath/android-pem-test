@@ -2,6 +2,8 @@ package com.example.pem_test.contactCreationScreen;
 
 import android.util.Log;
 
+import com.example.pem_test.data.RepositoryContract;
+
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
@@ -58,9 +60,15 @@ public class ContactCreationPresenter implements ContactCreationContract.Present
         && data.get("dni") != null && !data.get("dni").equals("")
         && data.get("cv") != null && !data.get("cv").equals("")) {
 
-      model.createContact(data);
+      model.createContact(data, new RepositoryContract.AddContactDoneCallback() {
+        @Override
+        public void done() {
+          view.get().goBack();
+        }
+      });
     } else {
-      Log.e(TAG, "_________________ INVALID DATA ____________");
+      String message = "Invalid input";
+      view.get().presentToast(message);
     }
 
   }
