@@ -8,13 +8,21 @@ import io.realm.RealmResults;
 public interface RepositoryContract {
 
   interface LoadContactListCallback {
-    void setContactList(final Contact[] contactList);
+    void setContactList(final List<Contact> contactList);
+  }
+
+  interface AddContactDoneCallback {
+    void done();
+  }
+
+  interface RemoveContactDoneCallback {
+    void done();
   }
 
   void loadContactList(LoadContactListCallback callback);
 
-  void addContact(Map<String, String> data);
+  void addContact(Map<String, String> data, AddContactDoneCallback callback);
 
-  void removeContact(Contact contact);
+  void removeContact(Contact contact, RemoveContactDoneCallback callback);
 
 }

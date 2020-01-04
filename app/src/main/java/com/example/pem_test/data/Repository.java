@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.util.Map;
 
+import io.realm.OrderedCollectionChangeSet;
+import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
@@ -30,63 +32,46 @@ public class Repository implements RepositoryContract {
 
   @Override
   public void loadContactList(final LoadContactListCallback callback) {
-    realm.executeTransactionAsync(
-        new Realm.Transaction() {
-          @Override
-          public void execute(Realm bgRealm) {
-            RealmResults<Contact> results = bgRealm.where(Contact.class).findAll();
-            contactList = results.toArray(new Contact[results.size()]);
-          }
-        },
-        new Realm.Transaction.OnSuccess() {
-          @Override
-          public void onSuccess() {
-            callback.setContactList(contactList);
-          }
-        },
-        new Realm.Transaction.OnError() {
-          @Override
-          public void onError(Throwable error) {
-            Log.e("REPOSITORY", "______ Load contact list ERROR: " + error + "  _____ ");
-          }
-        }
-    );
+    final RealmResults<Contact> contacts = realm.where(Contact.class).findAllAsync();
+    contacts.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<Contact>>() {
+      @Override
+      public void onChange(RealmResults<Contact> contacts, OrderedCollectionChangeSet changeSet) {
+        changeSet.getInsertions();
+        callback.setContactList(contacts);
+      }
+    });
   }
 
   @Override
-  public void addContact(final Map<String, String> data) {
+  public void addContact(final Map<String, String> data, AddContactDoneCallback callback) {
     // TODO addContact
-    realm.executeTransactionAsync(
-        new Realm.Transaction() {
-          @Override
-          public void execute(Realm bgRealm) {
+    Number currentIdNum = realm.where(Contact.class).max("id");
+    int nextId;
+    if (currentIdNum == null) {
+      nextId = 1;
+    } else {
+      nextId = currentIdNum.intValue() + 1;
+    }
 
+    realm.beginTransaction();
 
-            Number currentIdNum = bgRealm.where(Contact.class).max("id");
-            int nextId;
-            if (currentIdNum == null) {
-              nextId = 1;
-            } else {
-              nextId = currentIdNum.intValue() + 1;
-            }
+    Contact newContact = realm.createObject(Contact.class);
+    newContact.setId(nextId);
+    newContact.setName(data.get("name"));
+    newContact.setSurname(data.get("surname"));
+    newContact.setAge(Integer.parseInt(data.get("age")));
+    newContact.setOccupation(data.get("occupation"));
+    newContact.setDni(data.get("dni"));
+    newContact.setCv(data.get("cv"));
 
-            Contact contact = new Contact();
-            contact.setId(nextId);
-            contact.setName(data.get("name"));
-            contact.setSurname(data.get("surname"));
-            contact.setAge(Integer.parseInt(data.get("age")));
-            contact.setOccupation(data.get("occupation"));
-            contact.setDni(data.get("dni"));
-            contact.setCv(data.get("cv"));
+    realm.commitTransaction();
 
-            bgRealm.insertOrUpdate(contact);
-          }
-        }
-    );
+    callback.done();
+
   }
 
   @Override
-  public void removeContact(final Contact contact) {
+  public void removeContact(final Contact contact, RemoveContactDoneCallback callback) {
     // TODO removeContact
     realm.executeTransactionAsync(new Realm.Transaction() {
       @Override
@@ -97,5 +82,9 @@ public class Repository implements RepositoryContract {
         results.deleteAllFromRealm();
       }
     });
+
+
+
+    callback.done();
   }
 }

@@ -1,5 +1,7 @@
 package com.example.pem_test.contactCreationScreen;
 
+import com.example.pem_test.data.RepositoryContract;
+
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
@@ -13,6 +15,8 @@ interface ContactCreationContract {
     void goBack();
 
     Map<String, String> getDataFromInput();
+
+    void presentToast(String message);
   }
 
   interface Presenter {
@@ -31,7 +35,7 @@ interface ContactCreationContract {
 
   interface Model {
 
-    void createContact(Map<String, String> data);
+    void createContact(Map<String, String> data, RepositoryContract.AddContactDoneCallback callback);
   }
 
   interface Router {

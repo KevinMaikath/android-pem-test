@@ -7,6 +7,7 @@ import com.example.pem_test.data.RepositoryContract;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 import io.realm.RealmResults;
 
@@ -43,23 +44,15 @@ public class ContactListPresenter implements ContactListContract.Presenter {
   public void fetchData() {
     // Log.e(TAG, "fetchData()");
 
-
     model.loadContactList(new RepositoryContract.LoadContactListCallback() {
       @Override
-      public void setContactList(Contact[] contactList) {
+      public void setContactList(List<Contact> contactList) {
         viewModel.contactList = contactList;
         view.get().displayData(viewModel);
-        Log.e(TAG, "____________ CONTACT LIST CHANGED TRUE ______");
       }
     });
 
 
-    if (viewModel.contactList == null) {
-      viewModel.contactList = new Contact[]{};
-    }
-
-    // update the view
-    view.get().displayData(viewModel);
   }
 
   @Override

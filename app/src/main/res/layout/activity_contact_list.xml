@@ -5,16 +5,23 @@
         android:layout_height="match_parent"
         tools:context=".contactListScreen.ContactListActivity">
 
-    <include
-            android:id="@+id/toolbar"
-            layout="@layout/custom_toolbar" />
-
-    <include
-            android:id="@+id/contact_list_recycler"
-            layout="@layout/contact_list_recycler_layout"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+                android:id="@+id/toolbar"
+                layout="@layout/custom_toolbar" />
+
+        <include
+                android:id="@+id/contact_list_recycler"
+                layout="@layout/contact_list_recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
