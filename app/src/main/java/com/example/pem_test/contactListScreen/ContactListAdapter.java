@@ -49,6 +49,9 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     String dni = contactList.get(position).getDni();
     holder.contactDNI.setText(dni);
+
+    int rating = contactList.get(position).getRating();
+    holder.contactRating.setText("Rating: " + String.valueOf(rating));
   }
 
   @Override
@@ -60,12 +63,14 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     final TextView contactName;
     final TextView contactSurname;
     final TextView contactDNI;
+    final TextView contactRating;
 
     ViewHolder(View view) {
       super(view);
       contactName = view.findViewById(R.id.contact_name_label);
       contactSurname = view.findViewById(R.id.contact_surname_label);
       contactDNI = view.findViewById(R.id.contact_dni_label);
+      contactRating = view.findViewById(R.id.contact_rating_label);
     }
   }
 

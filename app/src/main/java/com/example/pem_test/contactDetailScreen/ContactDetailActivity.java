@@ -19,7 +19,7 @@ public class ContactDetailActivity
 
   private Toolbar toolbar;
   private TextView toolbar_title, name_label, surname_label, age_label, occupation_label, dni_label,
-      cv_label;
+      cv_label, rating_label;
   private Button back_button, delete_button;
 
   @Override
@@ -56,6 +56,7 @@ public class ContactDetailActivity
     this.occupation_label = findViewById(R.id.detail_occupation_label);
     this.dni_label = findViewById(R.id.detail_dni_label);
     this.cv_label = findViewById(R.id.detail_cv_label);
+    this.rating_label = findViewById(R.id.detail_rating_label);
 
     setSupportActionBar(toolbar);
     // do the setup
@@ -86,6 +87,7 @@ public class ContactDetailActivity
     this.occupation_label.setText(viewModel.currentContact.getOccupation());
     this.dni_label.setText(viewModel.currentContact.getDni());
     this.cv_label.setText(viewModel.currentContact.getCv());
+    this.rating_label.setText(String.valueOf(viewModel.currentContact.getRating()));
   }
 
   @Override

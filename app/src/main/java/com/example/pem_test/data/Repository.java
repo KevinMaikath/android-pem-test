@@ -63,6 +63,7 @@ public class Repository implements RepositoryContract {
     newContact.setOccupation(data.get("occupation"));
     newContact.setDni(data.get("dni"));
     newContact.setCv(data.get("cv"));
+    newContact.setRating(Integer.parseInt(data.get("rating")));
 
     realm.commitTransaction();
 

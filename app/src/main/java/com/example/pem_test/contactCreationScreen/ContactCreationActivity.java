@@ -26,7 +26,8 @@ public class ContactCreationActivity
   private Toolbar toolbar;
   private TextView toolbar_title;
   private Button cancel_button, done_button;
-  private EditText name_input, surname_input, age_input, occupation_input, dni_input, cv_input;
+  private EditText name_input, surname_input, age_input, occupation_input, dni_input, cv_input,
+      rating_input;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class ContactCreationActivity
     this.occupation_input = findViewById(R.id.creation_occupation_input);
     this.dni_input = findViewById(R.id.creation_dni_input);
     this.cv_input = findViewById(R.id.creation_cv_input);
+    this.rating_input = findViewById(R.id.creation_rating_input);
 
     setSupportActionBar(toolbar);
     // do the setup
@@ -103,6 +105,7 @@ public class ContactCreationActivity
     data.put("occupation", occupation_input.getText().toString());
     data.put("dni", dni_input.getText().toString());
     data.put("cv", cv_input.getText().toString());
+    data.put("rating", rating_input.getText().toString());
 
     return data;
   }

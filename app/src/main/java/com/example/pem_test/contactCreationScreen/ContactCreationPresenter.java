@@ -58,7 +58,8 @@ public class ContactCreationPresenter implements ContactCreationContract.Present
         && data.get("age") != null && !data.get("age").equals("")
         && data.get("occupation") != null && !data.get("occupation").equals("")
         && data.get("dni") != null && !data.get("dni").equals("")
-        && data.get("cv") != null && !data.get("cv").equals("")) {
+        && data.get("cv") != null && !data.get("cv").equals("")
+        && data.get("rating") != null && !data.get("rating").equals("")) {
 
       model.createContact(data, new RepositoryContract.AddContactDoneCallback() {
         @Override

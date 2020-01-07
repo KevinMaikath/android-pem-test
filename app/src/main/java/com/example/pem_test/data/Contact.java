@@ -12,6 +12,7 @@ public class Contact extends RealmObject {
   private String occupation;
   private String dni;
   private String cv;
+  private int rating;
 
   public long getId() {
     return id;
@@ -67,5 +68,13 @@ public class Contact extends RealmObject {
 
   public void setCv(String cv) {
     this.cv = cv;
+  }
+
+  public int getRating() {
+    return rating;
+  }
+
+  public void setRating(int rating) {
+    this.rating = rating;
   }
 }

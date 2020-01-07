@@ -15,4 +15,5 @@
     <string name="add_button">Add</string>
     <string name="back_button">Back</string>
     <string name="contact_list_title">Contacts</string>
+    <string name="creation_rating_label">Rating:</string>
 </resources>
