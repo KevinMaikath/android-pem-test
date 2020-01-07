@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +25,12 @@ public class ContactCreationActivity
   private ContactCreationContract.Presenter presenter;
 
   private Toolbar toolbar;
-  private TextView toolbar_title;
+  private TextView toolbar_title, rating_value_label;
   private Button cancel_button, done_button;
-  private EditText name_input, surname_input, age_input, occupation_input, dni_input, cv_input,
-      rating_input;
+  private EditText name_input, surname_input, age_input, occupation_input, dni_input, cv_input;
+  private ImageButton star_1, star_2, star_3, star_4, star_5;
+  private String ratingValue;
+//      rating_input;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +65,59 @@ public class ContactCreationActivity
     this.occupation_input = findViewById(R.id.creation_occupation_input);
     this.dni_input = findViewById(R.id.creation_dni_input);
     this.cv_input = findViewById(R.id.creation_cv_input);
-    this.rating_input = findViewById(R.id.creation_rating_input);
+//    this.rating_input = findViewById(R.id.creation_rating_input);
+
+    this.star_1 = findViewById(R.id.creation_star_1);
+    this.star_1.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        starClicked(1);
+      }
+    });
+
+    this.star_2 = findViewById(R.id.creation_star_2);
+    this.star_2.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        starClicked(2);
+      }
+    });
+
+    this.star_3 = findViewById(R.id.creation_star_3);
+    this.star_3.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        starClicked(3);
+      }
+    });
+
+    this.star_4 = findViewById(R.id.creation_star_4);
+    this.star_4.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        starClicked(4);
+      }
+    });
+
+    this.star_5 = findViewById(R.id.creation_star_5);
+    this.star_5.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        starClicked(5);
+      }
+    });
+
+    this.rating_value_label = findViewById(R.id.creation_rating_value);
+    this.ratingValue = "0";
 
     setSupportActionBar(toolbar);
     // do the setup
     ContactCreationScreen.configure(this);
+  }
+
+  private void starClicked(int selected) {
+    this.ratingValue = String.valueOf(selected);
+    this.rating_value_label.setText(ratingValue);
   }
 
   @Override
@@ -87,6 +138,7 @@ public class ContactCreationActivity
     //Log.e(TAG, "displayData()");
 
     // deal with the data
+    this.rating_value_label.setText(String.valueOf(ratingValue));
   }
 
   @Override
@@ -105,7 +157,7 @@ public class ContactCreationActivity
     data.put("occupation", occupation_input.getText().toString());
     data.put("dni", dni_input.getText().toString());
     data.put("cv", cv_input.getText().toString());
-    data.put("rating", rating_input.getText().toString());
+    data.put("rating", String.valueOf(this.ratingValue));
 
     return data;
   }
