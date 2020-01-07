@@ -7,6 +7,8 @@ import io.realm.RealmResults;
 
 public interface RepositoryContract {
 
+  void editRating(Contact currentContact, String newRatingValue);
+
   interface LoadContactListCallback {
     void setContactList(final List<Contact> contactList);
   }

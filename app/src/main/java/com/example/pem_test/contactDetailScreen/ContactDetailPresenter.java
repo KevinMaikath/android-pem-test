@@ -56,12 +56,16 @@ public class ContactDetailPresenter implements ContactDetailContract.Presenter {
 
   @Override
   public void onDeleteButtonClicked() {
-    // TODO onDeleteButtonClicked
     model.deleteContact(viewModel.currentContact, new RepositoryContract.RemoveContactDoneCallback() {
       @Override
       public void done() {
         view.get().goBack();
       }
     });
+  }
+
+  @Override
+  public void saveRating(String newRatingValue) {
+    model.saveRating(viewModel.currentContact, newRatingValue);
   }
 }

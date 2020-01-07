@@ -78,4 +78,15 @@ public class Repository implements RepositoryContract {
     realm.commitTransaction();
     callback.done();
   }
+
+  @Override
+  public void editRating(Contact currentContact, String newRatingValue) {
+    realm.beginTransaction();
+
+    Contact contactToUpdate = realm.where(Contact.class)
+        .equalTo("id", currentContact.getId()).findFirst();
+    contactToUpdate.setRating(Integer.parseInt(newRatingValue));
+
+    realm.commitTransaction();
+  }
 }

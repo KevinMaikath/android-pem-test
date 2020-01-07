@@ -27,10 +27,14 @@ interface ContactDetailContract {
     void onBackButtonClicked();
 
     void onDeleteButtonClicked();
+
+    void saveRating(String newRatingValue);
   }
 
   interface Model {
     void deleteContact(Contact contact, RepositoryContract.RemoveContactDoneCallback callback);
+
+    void saveRating(Contact currentContact, String newRatingValue);
   }
 
   interface Router {

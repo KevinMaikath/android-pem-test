@@ -21,4 +21,9 @@ public class ContactDetailModel implements ContactDetailContract.Model {
   public void deleteContact(Contact contact, RepositoryContract.RemoveContactDoneCallback callback) {
     repository.removeContact(contact, callback);
   }
+
+  @Override
+  public void saveRating(Contact currentContact, String newRatingValue) {
+    repository.editRating(currentContact, newRatingValue);
+  }
 }
